@@ -18,7 +18,7 @@ will be paid in full or defaulted.
 # Import model
 #@st.cache()
 def get_model():
-    with open('LD_xgb_Model.pkl', 'rb') as file:
+    with open('LD_Model.pkl', 'rb') as file:
         model = pickle.load(file)
     return model
 
@@ -31,6 +31,10 @@ if __name__ == "__main__":
         if content =="Yes":
             content = 1
         elif content == "Not":
+            content = 0
+        elif content == "New":
+            content = 1
+        elif content == "Established":
             content = 0
         elif content == "Active":
             content = 1
@@ -53,8 +57,8 @@ if __name__ == "__main__":
 
 
     # Categorical vairables
-    new = st.selectbox("Is business new or already established?", bool_var)
-    realestate = st.selectbox("A loan backed by real estate?", real_var)
+    new = st.selectbox("Is business new or already established?", real_var )
+    realestate = st.selectbox("A loan backed by real estate?", bool_var)
     recession = st.selectbox("Loan State during recession(2007-2009)", rece_var)
 
     # Numerical vairables 
